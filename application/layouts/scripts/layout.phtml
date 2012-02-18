@@ -1,0 +1,35 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="/js/jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" href="/style/01/default.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/text.css" />
+    <link rel="stylesheet" href="/css/960_24_col.css" />
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headScript() ?>
+    <?php echo $this->headStyle() ?>
+</head>
+<body>
+    <?php echo $this->render('header.phtml') ?>
+
+    <div class="container_24">
+        <div id="nav" class="grid_24"><?php echo $this->placeholder('nav') ?></div>
+    </div>
+
+    <div class="container_24" id="container">
+        <?php echo $this->layout()->content ?>
+    </div>
+
+    <div class="container_24" id="footer">
+        <div id="cms" class="grid_12">
+            <?php echo $this->render('footer.phtml') ?>
+        </div>
+        <div id="feeds" class="grid_12">
+        </div>
+    </div>
+</body>
+</html>

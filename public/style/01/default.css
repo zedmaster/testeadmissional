@@ -1,0 +1,43 @@
+
+.container_24 { background-image: url(img/24_col.gif);}
+
+body {
+  background: #f0f0f0;
+  color: #333;
+  font-size: 11px;
+  height: auto;
+  padding-bottom: 20px;
+}
+
+
+/***********
+    Header
+************/
+
+#header {border: 1px solid black;}
+
+
+
+/*************
+   container
+**************/
+
+#container {border: 1px solid black; min-height: 480px;}
+
+.noticia {border: 1px solid black; height: 230px; margin-top: 5px; margin-bottom: 5px;}
+
+
+
+/***************
+    Sidebar
+***************/
+
+#sidebar {border: 1px solid black;}
+
+
+
+/**************
+    Footer
+**************/
+
+#footer {border: 1px solid black;}
