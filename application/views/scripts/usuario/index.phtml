@@ -4,7 +4,33 @@
     <div><a href="/usuario/novo">[Novo]</a></div>
     <div>
         <form method="post">
-            <label>Pesquisar:</label><input type="text" name="pesquisa"><input type="submit" value="OK">
+            <label>Pesquisar:</label>
+                <?php echo $this->nome;?>
+                <input type="submit" value="OK">
         </form>
     </div>
+<?php if(count($this->list)>0):?>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->list as $val){?>
+                <tr>
+                    <td><?php echo $val->pk_usuario;?></td>
+                    <td><?php echo utf8_encode($val->nome);?></td>
+                    <td><?php echo $val->cpf;?></td>
+                    <td><a href="/usuario/editar?id=<?php echo $val->pk_usuario;?>">[Editar]</a><a href="/usuario/excluir?id=<?php echo $val->pk_usuario;?>">[Excluir]</a></td>
+                </tr>
+                <?}?>
+            <tbody>
+        </table>
+    </div>
 </div>
+<?php endif?>

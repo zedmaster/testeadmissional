@@ -5,12 +5,37 @@ class UsuarioController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+         $this->view->addHelperPath(
+                    'ZendX/JQuery/View/Helper',
+                    'ZendX_JQuery_View_Helper');
     }
 
     public function indexAction()
     {
-        // action body
+
+        $nome = $this->_getParam('nome');
+        $cbnome = new ZendX_JQuery_Form_Element_AutoComplete('nome');
+        $cbnome->setLabel('')
+             ->setJQueryParams(array(
+                    'source'=>'/usuario/nome', 
+                    'minLength'=>3
+            ))
+            ->setValue($nome);
+        $this->view->nome = $cbnome;
+        
+        if ($this->getRequest()->isPost()) {
+                $model = new Application_Model_Usuario();
+                $data = $model->pesquisaNomes($nome,false);
+                $this->view->list = $data;
+        }
+    }
+
+    public function nomeAction()
+    {
+        $term = $this->_getParam('term');
+        $model = new Application_Model_Usuario(); 
+        $data = $model->pesquisaNomes($term);
+        $this->_helper->json($data);
     }
 
     public function novoAction()
