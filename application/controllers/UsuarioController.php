@@ -22,12 +22,10 @@ class UsuarioController extends Zend_Controller_Action
             ))
             ->setValue($nome);
         $this->view->nome = $cbnome;
-        
-        if ($this->getRequest()->isPost()) {
-                $model = new Application_Model_Usuario();
-                $data = $model->pesquisaNomes($nome,false);
-                $this->view->list = $data;
-        }
+
+        $model = new Application_Model_Usuario();
+        $data = $model->pesquisaNomes($nome,false);
+        $this->view->list = $data;
     }
 
     public function nomeAction()
@@ -52,7 +50,8 @@ class UsuarioController extends Zend_Controller_Action
                 $model->insert($values);
 
                 $this->view->msg = "Cadastro realizado com sucesso.";
-                return $this->_forward('index','usuario');
+                unset($_POST);
+                $this->_forward('index','usuario');
             }
             $form->init();
             $form->isValid($post);
@@ -61,7 +60,20 @@ class UsuarioController extends Zend_Controller_Action
         $this->view->form = $form;
     }
 
+    
+    public function excluirAction()
+    {
+        $id = $this->_getParam('id');
+        $model =  new Application_Model_Usuario();
 
+        if($model->excluir($id))
+        {
+            $this->view->msg = "Exclusão do registro {$id} realizado com sucesso.";   
+        }else{
+            $this->view->msg = "Não foi possível excluir o registro {$id}.";
+        }
+        $this->_forward('index','usuario');
+    }
 }
 
 

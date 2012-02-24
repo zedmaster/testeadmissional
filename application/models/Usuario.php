@@ -39,5 +39,25 @@ class Application_Model_Usuario
         }
         return $result;
     }
+
+
+    public function excluir($id)
+    {
+        if($id < 1)
+        {
+            return false;
+        }
+        $table = $this->tb;
+
+        $where = $table->getAdapter()->quoteInto('pk_usuario = ?', $id);
+
+        try{
+            $table->delete($where);
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
+
+    }
 }
 

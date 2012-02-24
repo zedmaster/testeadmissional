@@ -26,7 +26,7 @@
                     <td><?php echo $val->pk_usuario;?></td>
                     <td><?php echo utf8_encode($val->nome);?></td>
                     <td><?php echo $val->cpf;?></td>
-                    <td><a href="/usuario/editar?id=<?php echo $val->pk_usuario;?>">[Editar]</a><a href="/usuario/excluir?id=<?php echo $val->pk_usuario;?>">[Excluir]</a></td>
+                    <td><a href="/usuario/editar?id=?<?php echo $val->pk_usuario;?>">[Editar]</a><a class="excluir" href="" pk="<?php echo $val->pk_usuario;?>">[Excluir]</a></td>
                 </tr>
                 <?}?>
             <tbody>
@@ -34,3 +34,14 @@
     </div>
 </div>
 <?php endif?>
+
+<script>
+    $('.excluir').live('click', function(){
+        var id = $(this).attr('pk');
+        var resposta = confirm("Deseja excluir o arquivo de ID "+id+" ?")
+        if (resposta){
+            window.location = "/usuario/excluir?id="+id;
+        }
+        return false;
+    });
+</script>
