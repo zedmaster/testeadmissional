@@ -78,5 +78,24 @@ class Application_Form_Usuario extends Zend_Form
         return $lista;
     }
 
+    public function setUpdate($id)
+    {
+        $this->setAttrib('action',"?id={$id}");
+
+
+        $this->email->disabled = 'disabled';
+        $this->email->removeValidator('Zend_Validate_NotEmpty')
+                    ->setRequired(false);
+        
+
+
+        $this->cpf->disabled = 'disabled';
+        $this->cpf->removeValidator('Zednet_Validate_Cpf')
+                  ->removeValidator('Zend_Validate_NotEmpty')
+                  ->setRequired(false);
+
+        //Zend_Debug::dump($this->email->getValidators());
+    }
+
 }
 

@@ -60,7 +60,6 @@ class UsuarioController extends Zend_Controller_Action
         $this->view->form = $form;
     }
 
-    
     public function excluirAction()
     {
         $id = $this->_getParam('id');
@@ -74,7 +73,47 @@ class UsuarioController extends Zend_Controller_Action
         }
         $this->_forward('index','usuario');
     }
+
+    public function editarAction()
+    {
+        $post = $this->getRequest()->getPost();
+        $id = $this->_getParam('id');
+        $model =  new Application_Model_Usuario();
+        $form = new Application_Form_Usuario();
+        $form->setUpdate($id);
+
+
+        if ($this->getRequest()->isPost()) {
+            if($form->isValid($post)) {
+                $values = $form->getValues();
+
+                if($model->update($id,$values)){
+                    $this->view->msg = "Atualização do registro {$id} realizado com sucesso.";
+                    unset($_POST);
+                    $this->_forward('index','usuario');
+               }else{
+                    $this->view->msg = "Houve um problema ao atualizar o registro {$id}.";
+               }
+            }
+        }
+
+        if($id>0)
+        {
+            $registro = $model->find($id);
+            if(!is_null($registro))
+            {
+                $form->populate($registro);
+                $this->view->form = $form;
+            }
+        } 
+
+
+    }
+
+
 }
+
+
 
 
 

@@ -10,13 +10,6 @@ class Application_Model_Usuario
         $this->tb = new Application_Model_DbTable_TbUsuario();
     }
 
-    public function insert($post)
-    {
-        $post['data_inclusao'] = new Zend_Db_Expr('NOW()');
-
-        $this->tb->insert($post);
-    }
-
     public function pesquisaNomes($term, $json=true)
     {
         $select = $this->tb->select();
@@ -39,6 +32,53 @@ class Application_Model_Usuario
         }
         return $result;
     }
+
+    public function find($id)
+    {
+        $objeto = null;
+        if($id<1)
+        {
+            return $objeto;
+        }
+
+        $table = $this->tb;
+        $objeto = $table->find($id);
+        $objeto = $objeto->toArray();
+        return $objeto[0];
+    }
+
+
+
+    public function insert($post)
+    {
+        $post['data_inclusao'] = new Zend_Db_Expr('NOW()');
+
+        $this->tb->insert($post);
+    }
+
+
+    public function update($id,$post)
+    {
+        if($id<1 || !is_array($post))
+        {
+            return false;
+        }
+
+        unset($post['email']);
+        unset($post['cpf']);
+
+
+        try{
+            $table = $this->tb;
+            $where = $table->getAdapter()->quoteInto('pk_usuario = ?', $id);
+            $table->update($post, $where);
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
+
+    }
+
 
 
     public function excluir($id)
