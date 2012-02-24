@@ -30,7 +30,7 @@ class Application_Form_Usuario extends Zend_Form
         $nascimento->setLabel('Data Nascimento:')
              ->setRequired(true)
              ->addValidator('NotEmpty')
-             ->addValidator(new Zend_Validate_Date(array('locale' => 'pt_BR')) );
+             ->addValidator(new Zend_Validate_Date(array('format' => 'dd/MM/YYYY')) );
 
 
         $cargo = new Zend_Form_Element_Select('fk_cargo');
