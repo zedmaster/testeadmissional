@@ -4,13 +4,20 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <?php $this->headLink()
+                           ->prependStylesheet('/css/reset.css')
+                           ->appendStylesheet('/style/01/default.css')
+                           ->appendStylesheet('/css/text.css')
+                           ->appendStylesheet('/css/960_24_col.css')
+                           ->appendStylesheet('/css/cupertino/jquery-ui-1.8.18.custom.css');
+    ?>
+    <?php echo $this->headLink(); ?>
     <?php echo $this->jQuery()
                     ->setVersion('1.7.1')
-                    ->setUiVersion('1.8.17');?>
-    <link rel="stylesheet" href="/style/01/default.css" />
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/text.css" />
-    <link rel="stylesheet" href="/css/960_24_col.css" />
+                    ->setUiVersion('1.8.18')
+                    ->addJavascriptFile('/js/jquery.dataTables.min.js')
+                    ->addJavascript("$(document).ready(function(){ $('#table1').dataTable({'bJQueryUI': true}); });");
+    ?>
     <?php echo $this->headTitle() ?>
     <?php echo $this->headScript() ?>
     <?php echo $this->headStyle() ?>
@@ -22,8 +29,10 @@
         <div id="nav" class="grid_24"><?php echo $this->placeholder('nav') ?></div>
     </div>
 
-    <div class="container_24" id="container">
-        <?php echo $this->layout()->content ?>
+    <div class="container_24 ui-tabs-panel ui-widget-content ui-corner-bottom" id="container">
+        <div class="grid_24">
+            <?php echo $this->layout()->content ?>
+        </div>
     </div>
 
     <div class="container_24" id="footer">

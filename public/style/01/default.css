@@ -1,8 +1,9 @@
 
-.container_24 { background-image: url(img/24_col.gif);}
+/**.container_24 { background-image: url(img/24_col.gif);}**/
+.container_24 { background-color: #FFF;}
 
 body {
-  background: #f0f0f0;
+  background: #fff;
   color: #333;
   font-size: 11px;
   height: auto;
@@ -14,7 +15,8 @@ body {
     Header
 ************/
 
-#header {border: 1px solid black;}
+#header {background-color: #fff  }
+#header h2 {width: 940px; font-size: 26px; padding: 10px;  margin-left: -1px;}
 
 
 
@@ -22,9 +24,11 @@ body {
    container
 **************/
 
-#container {border: 1px solid black; min-height: 480px;}
+#container {min-height: 480px;}
 
 .noticia {border: 1px solid black; height: 230px; margin-top: 5px; margin-bottom: 5px;}
+
+.ui-autocomplete {width: 340px;}
 
 
 
@@ -40,4 +44,4 @@ body {
     Footer
 **************/
 
-#footer {border: 1px solid black;}
+#footer {}

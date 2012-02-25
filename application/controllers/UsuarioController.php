@@ -20,7 +20,8 @@ class UsuarioController extends Zend_Controller_Action
                     'source'=>'/usuario/nome', 
                     'minLength'=>3
             ))
-            ->setValue($nome);
+             ->setValue($nome)
+             ->setAttrib('size', '35');
         $this->view->nome = $cbnome;
 
         $model = new Application_Model_Usuario();

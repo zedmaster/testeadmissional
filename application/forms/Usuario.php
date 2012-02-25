@@ -8,7 +8,9 @@ class Application_Form_Usuario extends Zend_Form
         $nome = new Zend_Form_Element_Text('nome');
         $nome->setLabel('Nome:')
              ->setRequired(true)
-             ->addValidator('NotEmpty');
+             ->addValidator('NotEmpty')
+             ->addValidator(new Zend_Validate_StringLength(array('max' => 255)))
+             ->setAttrib('size', '40');
 
         $email = new Zend_Form_Element_Text('email');
         $email->setLabel('E-mail:')
