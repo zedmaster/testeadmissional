@@ -44,12 +44,8 @@ class Application_Form_Usuario extends Zend_Form
 
 
 
-        $submit = new Zend_Form_Element_Submit('enviar');
-        $submit->setValue('Enviar')
-               ->setDecorators(array(
-                   array('ViewHelper',
-                   array('helper' => 'formSubmit'))
-               ));
+        $submit = new Zend_Form_Element_Submit('Enviar');
+        $submit->setValue('Enviar');
 
 
         $this->addElements(array(

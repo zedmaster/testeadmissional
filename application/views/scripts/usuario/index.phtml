@@ -1,12 +1,18 @@
     <h2>Usuário</h2>
-    <div class="msg"><?php echo $this->msg;?></div>
-    <div><a href="/usuario/novo">[Novo]</a></div>
-    <div>
-        <form method="post">
-            <label>Pesquisar:</label>
+
+    <?php if($this->msg != ''): ?>
+        <div class="ui-state-highlight ui-corner-all msg"><?php echo $this->msg;?></div>
+        <script>$('.msg').delay(5000).fadeOut(3000);</script>
+    <?php endif ?>
+
+    <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix">
+        <div><a class="ui-state-default ui-corner-all buttom_link novo" href="/usuario/novo"><span class="ui-icon ui-icon-plusthick"></span>Novo</a></div>
+        <div class="pesquisar">
+            <form method="post" >
                 <?php echo $this->nome;?>
-                <input type="submit" value="OK">
-        </form>
+                <input  class="submit" type="submit" value="OK">
+            </form>
+        </div>
     </div>
 <?php if(count($this->list)>0):?>
     <div >
@@ -25,7 +31,8 @@
                     <td><?php echo $val->pk_usuario;?></td>
                     <td><?php echo utf8_encode($val->nome);?></td>
                     <td><?php echo $val->cpf;?></td>
-                    <td><a href="/usuario/editar?id=<?php echo $val->pk_usuario;?>">[Editar]</a><a class="excluir" href="" pk="<?php echo $val->pk_usuario;?>">[Excluir]</a></td>
+                    <td><a href="/usuario/editar?id=<?php echo $val->pk_usuario;?>" class="ui-state-default ui-corner-all buttom_link"><span class="ui-icon ui-icon-pencil"></span>Editar</a>
+                        <a class="ui-state-default ui-corner-all buttom_link excluir" href="" pk="<?php echo $val->pk_usuario;?>"><span class="ui-icon ui-icon-closethick"></span>Excluir</a></td>
                 </tr>
                 <?}?>
             <tbody>
@@ -43,6 +50,7 @@
         return false;
     });
 
-
+    $(document).ready(function(){
+    });
 
 </script>

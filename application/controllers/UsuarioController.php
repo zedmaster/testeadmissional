@@ -15,7 +15,7 @@ class UsuarioController extends Zend_Controller_Action
 
         $nome = $this->_getParam('nome');
         $cbnome = new ZendX_JQuery_Form_Element_AutoComplete('nome');
-        $cbnome->setLabel('')
+        $cbnome->setLabel('Pesquisar:')
              ->setJQueryParams(array(
                     'source'=>'/usuario/nome', 
                     'minLength'=>3

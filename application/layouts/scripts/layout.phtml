@@ -9,14 +9,25 @@
                            ->appendStylesheet('/style/01/default.css')
                            ->appendStylesheet('/css/text.css')
                            ->appendStylesheet('/css/960_24_col.css')
-                           ->appendStylesheet('/css/cupertino/jquery-ui-1.8.18.custom.css');
+                           ->appendStylesheet('/css/cupertino/jquery-ui-1.8.18.custom.css')
+                           ->appendStylesheet('/css/jquery.dataTables.css')
+                           ->appendStylesheet('/css/jquery.dataTables_themeroller.css');
     ?>
     <?php echo $this->headLink(); ?>
     <?php echo $this->jQuery()
                     ->setVersion('1.7.1')
                     ->setUiVersion('1.8.18')
                     ->addJavascriptFile('/js/jquery.dataTables.min.js')
-                    ->addJavascript("$(document).ready(function(){ $('#table1').dataTable({'bJQueryUI': true}); });");
+                    ->addJavascript("$(document).ready(function(){ 
+                                        $('#table1').dataTable({
+                                                    'bJQueryUI': true,
+                                                    'bPaginate': false,     
+                                                    'bFilter': false, 
+                                                    'sDom': '<\"toolbar\">frtip', 
+                                                    'bInfo': false,  
+                                        });
+                                      });
+                    ");
     ?>
     <?php echo $this->headTitle() ?>
     <?php echo $this->headScript() ?>
@@ -26,11 +37,14 @@
     <?php echo $this->render('header.phtml') ?>
 
     <div class="container_24">
-        <div id="nav" class="grid_24"><?php echo $this->placeholder('nav') ?></div>
+        <div id="nav" class="grid_24">
+           <a href="/">Home</a> 
+           <a href="/usuario">Usuário</a> 
+        </div>
     </div>
 
     <div class="container_24 ui-tabs-panel ui-widget-content ui-corner-bottom" id="container">
-        <div class="grid_24">
+        <div class="prefix_1 grid_22">
             <?php echo $this->layout()->content ?>
         </div>
     </div>
