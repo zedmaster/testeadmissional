@@ -8,30 +8,13 @@
                            ->prependStylesheet('/css/reset.css')
                            ->appendStylesheet('/style/01/default.css')
                            ->appendStylesheet('/css/text.css')
-                           ->appendStylesheet('/css/960_24_col.css')
-                           ->appendStylesheet('/css/cupertino/jquery-ui-1.8.18.custom.css')
-                           ->appendStylesheet('/css/jquery.dataTables.css')
-                           ->appendStylesheet('/css/jquery.dataTables_themeroller.css');
+                           ->appendStylesheet('/css/960_24_col.css');
     ?>
     <?php echo $this->headLink(); ?>
-    <?php echo $this->jQuery()
-                    ->setVersion('1.7.1')
-                    ->setUiVersion('1.8.18')
-                    ->addJavascriptFile('/js/jquery.dataTables.min.js')
-                    ->addJavascript("$(document).ready(function(){ 
-                                        $('#table1').dataTable({
-                                                    'bJQueryUI': true,
-                                                    'bPaginate': false,     
-                                                    'bFilter': false, 
-                                                    'sDom': '<\"toolbar\">frtip', 
-                                                    'bInfo': false,  
-                                        });
-                                      });
-                    ");
-    ?>
-    <?php echo $this->headTitle() ?>
-    <?php echo $this->headScript() ?>
-    <?php echo $this->headStyle() ?>
+    <?php echo $this->jQuery(); ?>
+    <?php echo $this->headTitle(); ?>
+    <?php echo $this->headScript(); ?>
+    <?php echo $this->headStyle(); ?>
 </head>
 <body>
     <?php echo $this->render('header.phtml') ?>
@@ -50,10 +33,8 @@
     </div>
 
     <div class="container_24" id="footer">
-        <div id="cms" class="grid_12">
+        <div id="cms" class="grid_2 prefix_22">
             <?php echo $this->render('footer.phtml') ?>
-        </div>
-        <div id="feeds" class="grid_12">
         </div>
     </div>
 </body>

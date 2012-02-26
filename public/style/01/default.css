@@ -32,7 +32,7 @@ body {
   padding: 5px;
 }
 
-#nav a {color: #2779AA;}
+#nav a {color: #2779AA; text-decoration: none;}
 
 /*************
    container
@@ -128,4 +128,4 @@ padding:0;
     Footer
 **************/
 
-#footer {}
+#footer {margin-top: 10px;}
