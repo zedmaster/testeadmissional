@@ -47,9 +47,10 @@ class UsuarioController extends Zend_Controller_Action
 
                 $model->insert($values);
 
-                $this->view->msg = "Cadastro realizado com sucesso.";
+                $msg = "Cadastro realizado com sucesso.";
                 unset($_POST);
-                $this->_forward('index','usuario');
+                $_SESSION['msg'] = $msg;
+                $this->_redirect('/usuario');
             }
             $form->init();
             $form->isValid($post);
@@ -65,11 +66,12 @@ class UsuarioController extends Zend_Controller_Action
 
         if($model->excluir($id))
         {
-            $this->view->msg = "Exclusão do registro {$id} realizado com sucesso.";   
+            $msg = "Exclusão do registro {$id} realizado com sucesso.";   
         }else{
-            $this->view->msg = "Não foi possível excluir o registro {$id}.";
+            $msg = "Não foi possível excluir o registro {$id}.";
         }
-        $this->_forward('index','usuario');
+        $_SESSION['msg'] = $msg;
+        $this->_redirect('/usuario');
     }
 
     public function editarAction()
@@ -86,11 +88,13 @@ class UsuarioController extends Zend_Controller_Action
                 $values = $form->getValues();
 
                 if($model->update($id,$values)){
-                    $this->view->msg = "Atualização do registro {$id} realizado com sucesso.";
+                    $msg = "Atualização do registro {$id} realizado com sucesso.";
                     unset($_POST);
-                    $this->_forward('index','usuario');
+                    $_SESSION['msg'] = $msg;
+                    $this->_redirect('/usuario');
+                    
                }else{
-                    $this->view->msg = "Houve um problema ao atualizar o registro {$id}.";
+                    $_SESSION['msg'] = "Houve um problema ao atualizar o registro {$id}.";
                }
             }
         }

@@ -1,7 +1,8 @@
     <h2>Usuário</h2>
 
-    <?php if($this->msg != ''): ?>
-        <div class="ui-state-highlight ui-corner-all msg"><?php echo $this->msg;?></div>
+    <?php if($_SESSION['msg'] != ''): ?>
+        <div class="ui-state-highlight ui-corner-all msg"><?php echo $_SESSION['msg'];?></div>
+        <?php unset($_SESSION['msg']);?>
         <script>$('.msg').delay(5000).fadeOut(3000);</script>
     <?php endif ?>
 

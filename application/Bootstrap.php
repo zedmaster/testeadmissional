@@ -36,6 +36,10 @@ public function _initView() {
             Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
             }
 
+    protected function _initSession() 
+    {
+        Zend_Session::start(); 
+    }
 
 }
 
