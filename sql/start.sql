@@ -42,7 +42,7 @@ CREATE TABLE `tb_usuario` (
   UNIQUE KEY `email` (`email`),
   KEY `fk_cargo` (`fk_cargo`),
   CONSTRAINT `tb_usuario_fk` FOREIGN KEY (`fk_cargo`) REFERENCES `tb_cargo` (`pk_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=728 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 #
 # Data for the `tb_cargo` table  (LIMIT 0,500)
@@ -69,12 +69,12 @@ COMMIT;
 #
 
 INSERT INTO `tb_usuario` (`pk_usuario`, `nome`, `email`, `cpf`, `data_nascimento`, `data_inclusao`, `fk_cargo`) VALUES 
-  (8,'Almeida dos Santos','almeidinha@terra.com.br','12345678912','30000231','0000-00-00 00:00:00',9),
-  (377,'Tia do café','teste@email.com','25124464432','1985-12-22','2010-08-27 16:49:41',9),
-  (608,'Nelson Wisinevski Lins','nelsonwlins@gmail.com','859.347.596','16-08-1991','0000-00-00 00:00:00',39),
-  (609,'Antonio','antoniio@gmail.com','156.845.963','15-58-6915','0000-00-00 00:00:00',36),
-  (656,'Lucas','lucas@email.com','45688686325','02-35-9841','2011-02-08 01:58:03',4),
-  (727,'Joaquim da Silva','joaquim@joaquim.com.br','35289789552','25-87-8900','0000-00-00 00:00:00',39);
+  (1,'Usuário Um','usuario1@zednet.net.br','12345678912','20/01/1970','0000-00-00 00:00:00',9),
+  (2,'Usuário Dois','usuario2@zednet.net.br','25124464432','12/02/1980','2010-08-27 16:49:41',9),
+  (3,'Usuário Três','usuario3@zednet.net.br','859347596','16/08/1990','0000-00-00 00:00:00',39),
+  (4,'Usuário Quatro','usuario4@zednet.net.br','156845963','15/08/1980','0000-00-00 00:00:00',36),
+  (5,'Usuário Cinco','usuario5@zednet.net.br','45688686325','02/35/1980','2011-02-08 01:58:03',4),
+  (6,'Usuário Seis','usuario6@zednet.net.br','35289789552','25/07/1980','0000-00-00 00:00:00',39);
 COMMIT;
 
 
