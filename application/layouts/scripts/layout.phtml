@@ -6,9 +6,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <?php $this->headLink()
                            ->prependStylesheet('/css/reset.css')
-                           ->appendStylesheet('/style/01/default.css')
                            ->appendStylesheet('/css/text.css')
-                           ->appendStylesheet('/css/960_24_col.css');
+                           ->appendStylesheet('/css/960_24_col.css')
+                           ->appendStylesheet('/css/cupertino/jquery.ui.all.css')
+                           ->appendStylesheet('/style/01/default.css');
     ?>
     <?php echo $this->headLink(); ?>
     <?php echo $this->jQuery(); ?>
@@ -23,18 +24,19 @@
         <div id="nav" class="grid_24">
            <a href="/">Home</a> 
            <a href="/usuario">Usuário</a> 
+           <a href="/contato">Contato</a> 
         </div>
     </div>
 
     <div class="container_24 ui-tabs-panel ui-widget-content ui-corner-bottom" id="container">
-        <div class="prefix_1 grid_22">
+        <div id="content" class="prefix_1 grid_22">
             <?php echo $this->layout()->content ?>
         </div>
     </div>
 
     <div class="container_24" id="footer">
         <div id="cms" class="grid_2 prefix_22">
-            <?php echo $this->render('footer.phtml') ?>
+            <a href="http://zed.net.br" target="_new" ><img src="http://zed.net.br/wp-content/uploads/2012/02/logo2-mini2.png" width="60"></a>
         </div>
     </div>
 </body>

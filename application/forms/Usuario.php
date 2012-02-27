@@ -17,7 +17,8 @@ class Application_Form_Usuario extends Zend_Form
               ->setRequired(true)
               ->addValidator('NotEmpty')
               ->addValidator(new Zend_Validate_Db_NoRecordExists( array('table' => 'tb_usuario', 'field' => 'email')))
-              ->addValidator('EmailAddress');
+              ->addValidator('EmailAddress')
+              ->setAttrib('size', '25');
 
         $cpf = new Zend_Form_Element_Text('cpf');
         $cpf->setLabel('CPF:')
@@ -25,14 +26,30 @@ class Application_Form_Usuario extends Zend_Form
              ->addValidator('NotEmpty')
              ->addValidator(new Zednet_Validate_Cpf())
              ->addValidator(new Zend_Validate_Db_NoRecordExists( array('table' => 'tb_usuario', 'field' => 'cpf')))
-             ->addFilter(new Zend_Filter_PregReplace(array('match' => '/\.|-/', 'replace' => '')) );
+             ->addFilter(new Zend_Filter_PregReplace(array('match' => '/\.|-/', 'replace' => '')) )
+             ->setAttrib('alt', 'cpf')
+             ->setAttrib('size', '9');
 
 
+        /*
         $nascimento = new Zend_Form_Element_Text('data_nascimento');
         $nascimento->setLabel('Data Nascimento:')
              ->setRequired(true)
              ->addValidator('NotEmpty')
-             ->addValidator(new Zend_Validate_Date(array('format' => 'dd/MM/YYYY')) );
+             ->addValidator(new Zend_Validate_Date(array('format' => 'dd/MM/YYYY')) )
+             ->setAttrib('size', '7');
+        */
+        $nascimento =  new ZendX_JQuery_Form_Element_DatePicker("data_nascimento", array(
+                                                                                      'label' => 'Data Nascimento:',
+                                                                                      'jQueryParams' => array(
+                                                                                                    'changeYear' => 'true',
+                                                                                                    'changeMonth' => 'true',
+                                                                                                    'yearRange' => '1900:2000',
+                                                                                                    'defaultDate' => '-20Y',
+                                                                                                    'dateFormat' => 'dd/mm/yy'
+                                                                                                )
+                                                                                   ));
+        $nascimento->setAttrib('size', '7');
 
 
         $cargo = new Zend_Form_Element_Select('fk_cargo');

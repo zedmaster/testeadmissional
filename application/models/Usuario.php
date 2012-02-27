@@ -44,7 +44,9 @@ class Application_Model_Usuario
         $table = $this->tb;
         $objeto = $table->find($id);
         $objeto = $objeto->toArray();
-        return $objeto[0];
+        $objeto = $objeto[0];
+        $objeto['nome'] = utf8_encode($objeto['nome']);
+        return $objeto;
     }
 
 

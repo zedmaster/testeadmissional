@@ -17,6 +17,9 @@
           <actionMethod actionName="novo"/>
           <actionMethod actionName="editar"/>
         </controllerFile>
+        <controllerFile controllerName="Contato">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Usuario"/>
@@ -50,6 +53,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Usuario">
             <viewScriptFile forActionName="editar"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Contato">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -92,6 +98,9 @@
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="novo"/>
             <testApplicationActionMethod forActionName="editar"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Contato">
+            <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
