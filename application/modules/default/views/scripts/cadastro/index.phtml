@@ -1,0 +1,45 @@
+<h2>Cadastro Cliente</h2>
+
+
+
+    <?php if($_SESSION['msg'] != ''): ?>
+        <div class="ui-state-highlight ui-corner-all msg"><?php echo $_SESSION['msg'];?></div>
+        <?php unset($_SESSION['msg']);?>
+        <script>$('.msg').delay(5000).fadeOut(3000);</script>
+    <?php endif ?>
+
+
+
+<?php echo $this->form; ?>
+
+<script>
+/* Seleciona a cidade */
+$("#Endereco-uf").change(function() {
+    var uf = $("#Endereco-uf").val();
+    $.get('/default/cadastro/cidades/uf/'+uf, function(data){
+            $("#Endereco-id_cidade-element").html(data);
+    });
+});
+
+/* Seleciona PF e PJ */
+$('input[name=Conta[pessoa]]:radio').change(function() {
+    var valor = $('input[name=Conta[pessoa]]:checked').val();
+
+    if(valor == 'pf'){
+        $('#fieldset-PessoaFisica').show(1000);
+        $('#fieldset-PessoaJuridica').hide(1000);
+    }else{
+        $('#fieldset-PessoaJuridica').show(1000);
+        $('#fieldset-PessoaFisica').hide(1000);
+    }
+});
+
+var pessoa = $('input[name=Conta[pessoa]]:checked').val();
+if(pessoa == 'pf'){
+    $('#fieldset-PessoaJuridica').hide();
+}else if(pessoa == 'pj'){
+    $('#fieldset-PessoaFisica').hide(0);
+}
+   
+
+</script>

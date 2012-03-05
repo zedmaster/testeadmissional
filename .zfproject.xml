@@ -36,7 +36,32 @@
           <dbTableFile dbTableName="TbUsuario"/>
         </dbTableDirectory>
       </modelsDirectory>
-      <modulesDirectory enabled="false"/>
+      <modulesDirectory enabled="false">
+        <moduleDirectory moduleName="default">
+          <apisDirectory enabled="false"/>
+          <configsDirectory enabled="false"/>
+          <controllersDirectory/>
+          <formsDirectory enabled="false"/>
+          <layoutsDirectory enabled="false">
+            <layoutScriptsDirectory enabled="false"/>
+          </layoutsDirectory>
+          <modelsDirectory>
+            <dbTableDirectory enabled="false">
+              <dbTableFile dbTableName="TbCargo"/>
+              <dbTableFile dbTableName="TbCidades"/>
+              <dbTableFile dbTableName="TbCliente"/>
+              <dbTableFile dbTableName="TbConfiguracao"/>
+              <dbTableFile dbTableName="TbEstados"/>
+              <dbTableFile dbTableName="TbUsuario"/>
+            </dbTableDirectory>
+          </modelsDirectory>
+          <viewsDirectory>
+            <viewScriptsDirectory/>
+            <viewHelpersDirectory/>
+            <viewFiltersDirectory/>
+          </viewsDirectory>
+        </moduleDirectory>
+      </modulesDirectory>
       <viewsDirectory>
         <viewScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">

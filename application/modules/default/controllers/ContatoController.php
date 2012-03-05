@@ -1,6 +1,6 @@
 <?php
 
-class ContatoController extends Zend_Controller_Action
+class Default_ContatoController extends Zend_Controller_Action
 {
 
     public function init()

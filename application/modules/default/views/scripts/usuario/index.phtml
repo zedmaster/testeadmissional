@@ -1,0 +1,55 @@
+    <h2>Usuário</h2>
+
+    <?php if($_SESSION['msg'] != ''): ?>
+        <div class="ui-state-highlight ui-corner-all msg"><?php echo $_SESSION['msg'];?></div>
+        <?php unset($_SESSION['msg']);?>
+        <script>$('.msg').delay(5000).fadeOut(3000);</script>
+    <?php endif ?>
+
+    <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix">
+        <div><a class="ui-state-default ui-corner-all buttom_link novo" href="/usuario/novo"><span class="ui-icon ui-icon-plusthick"></span>Novo</a></div>
+        <div class="pesquisar">
+            <form method="post" >
+                <?php echo $this->nome;?>
+                <input  class="submit" type="submit" value="OK">
+            </form>
+        </div>
+    </div>
+<?php if(count($this->list)>0):?>
+    <div >
+        <table id="table1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->list as $val){?>
+                <tr>
+                    <td><?php echo $val->id_usuario;?></td>
+                    <td><?php echo $val->nome;?></td>
+                    <td><a href="/usuario/editar?id=<?php echo $val->id_usuario;?>" class="ui-state-default ui-corner-all buttom_link"><span class="ui-icon ui-icon-pencil"></span>Editar</a>
+                        <a class="ui-state-default ui-corner-all buttom_link excluir" href="" pk="<?php echo $val->id_usuario;?>"><span class="ui-icon ui-icon-closethick"></span>Excluir</a></td>
+                </tr>
+                <?}?>
+            <tbody>
+        </table>
+    </div>
+<?php endif?>
+
+<script>
+    $('.excluir').live('click', function(){
+        var id = $(this).attr('pk');
+        var resposta = confirm("Deseja excluir o arquivo de ID "+id+" ?")
+        if (resposta){
+            window.location = "/usuario/excluir?id="+id;
+        }
+        return false;
+    });
+
+    $(document).ready(function(){
+    });
+
+</script>

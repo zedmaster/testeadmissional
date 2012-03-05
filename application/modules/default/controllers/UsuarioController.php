@@ -1,6 +1,6 @@
 <?php
 
-class UsuarioController extends Zend_Controller_Action
+class Default_UsuarioController extends Zend_Controller_Action
 {
 
     public function init()
@@ -21,7 +21,7 @@ class UsuarioController extends Zend_Controller_Action
              ->setAttrib('size', '35');
         $this->view->nome = $cbnome;
 
-        $model = new Application_Model_Usuario();
+        $model = new Default_Model_Usuario();
         $data = $model->pesquisaNomes($nome,false);
         $this->view->list = $data;
     }
@@ -29,7 +29,7 @@ class UsuarioController extends Zend_Controller_Action
     public function nomeAction()
     {
         $term = $this->_getParam('term');
-        $model = new Application_Model_Usuario(); 
+        $model = new Default_Model_Usuario(); 
         $data = $model->pesquisaNomes($term);
         $this->_helper->json($data);
     }
@@ -37,13 +37,13 @@ class UsuarioController extends Zend_Controller_Action
     public function novoAction()
     {
         $post = $this->getRequest()->getPost();
-        $form = new Application_Form_Usuario();
+        $form = new Default_Form_Usuario();
 
 
         if ($this->getRequest()->isPost()) {
             if($form->isValid($post)) {
                 $values = $form->getValues();
-                $model = new Application_Model_Usuario();
+                $model = new Default_Model_Usuario();
 
                 $model->insert($values);
 
@@ -62,7 +62,7 @@ class UsuarioController extends Zend_Controller_Action
     public function excluirAction()
     {
         $id = $this->_getParam('id');
-        $model =  new Application_Model_Usuario();
+        $model =  new Default_Model_Usuario();
 
         if($model->excluir($id))
         {
@@ -78,8 +78,8 @@ class UsuarioController extends Zend_Controller_Action
     {
         $post = $this->getRequest()->getPost();
         $id = $this->_getParam('id');
-        $model =  new Application_Model_Usuario();
-        $form = new Application_Form_Usuario();
+        $model =  new Default_Model_Usuario();
+        $form = new Default_Form_Usuario();
         $form->setUpdate($id);
 
 

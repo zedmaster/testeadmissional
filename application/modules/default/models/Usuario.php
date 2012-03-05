@@ -1,13 +1,14 @@
 <?php
 
-class Application_Model_Usuario
+class Default_Model_Usuario
 {
     public $db;
 
 
     function __construct()
     {
-        $this->tb = new Application_Model_DbTable_TbUsuario();
+        $this->tb = new Default_Model_DbTable_TbUsuario();
+        $this->tb_cliente = new Default_Model_DbTable_TbCliente();
     }
 
     public function pesquisaNomes($term, $json=true)
@@ -24,7 +25,7 @@ class Application_Model_Usuario
             {
                 if($json)
                 {
-                    $result[] = utf8_encode($row->nome);
+                    $result[] = $row->nome;
                 }else{
                     return $rows;
                 }
@@ -45,7 +46,10 @@ class Application_Model_Usuario
         $objeto = $table->find($id);
         $objeto = $objeto->toArray();
         $objeto = $objeto[0];
-        $objeto['nome'] = utf8_encode($objeto['nome']);
+        $objeto['nome'] = $objeto['nome'];
+        $data = new Zend_Date($objeto['data_nascimento']);
+        $objeto['data_nascimento'] = $data->toString('d/MM/y');
+
         return $objeto;
     }
 
@@ -53,7 +57,7 @@ class Application_Model_Usuario
 
     public function insert($post)
     {
-        $post['data_inclusao'] = new Zend_Db_Expr('NOW()');
+        $post['data_cadastro'] = new Zend_Db_Expr('NOW()');
 
         $this->tb->insert($post);
     }
@@ -67,12 +71,13 @@ class Application_Model_Usuario
         }
 
         unset($post['email']);
-        unset($post['cpf']);
+        $data = new Zend_Date($post['data_nascimento']);
+        $post['data_nascimento'] = $data->toString(Zend_Date::W3C);
 
 
         try{
             $table = $this->tb;
-            $where = $table->getAdapter()->quoteInto('pk_usuario = ?', $id);
+            $where = $table->getAdapter()->quoteInto('id_usuario = ?', $id);
             $table->update($post, $where);
             return true;
         }catch(Exception $e){
@@ -91,10 +96,11 @@ class Application_Model_Usuario
         }
         $table = $this->tb;
 
-        $where = $table->getAdapter()->quoteInto('pk_usuario = ?', $id);
+        $where = $table->getAdapter()->quoteInto('id_usuario = ?', $id);
 
         try{
             $table->delete($where);
+            $this->tb_cliente->delete($where);
             return true;
         }catch(Exception $e){
             return false;
